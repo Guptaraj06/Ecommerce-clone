@@ -16,10 +16,13 @@ userRouter.post(
           _id: user.id,
           name: user.name,
           email: user.email,
+          isAdmin: user.isAdmin,
           token: generateToken(user),
         });
+        return;
+      } else {
+        res.status(401).send({ message: 'Invalid email or Password' });
       }
-      return;
     }
     res.status(401).send({ message: 'Invalid email or Password' });
   })
